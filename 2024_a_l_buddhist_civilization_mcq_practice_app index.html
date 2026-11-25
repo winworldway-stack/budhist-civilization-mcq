@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>අ.පො.ස. (උසස් පෙළ) 2024 - බෞද්ධ ශිෂ්ටාචාරය (I කොටස - MCQ)</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font: Noto Sans Sinhala & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sinhala: ['"Noto Sans Sinhala"', 'Inter', 'sans-serif'],
+            sans: ['Inter', '"Noto Sans Sinhala"', 'sans-serif'],
+          },
+          colors: {
+            ivory: '#FAF6EE',
+            parchment: '#F3ECE0',
+            maroon: '#6E1D27',
+            maroonDark: '#4D1219',
+            gold: '#B8860B',
+            goldLight: '#FBF3DC',
+            indigoDeep: '#1E294B',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
+      background-color: #FAF6EE;
+      color: #1F1A17;
+      line-height: 1.75;
+    }
+    /* Custom scrollbar for question palette */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F3ECE0;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C8B89E;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6E1D27;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-ivory text-[#1F1A17] selection:bg-maroon selection:text-white">
+
+  <!-- Top Sticky Header -->
+  <header class="sticky top-0 z-30 bg-maroonDark text-white shadow-lg border-b-2 border-gold/70">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <!-- Exam Title & Code -->
+        <div class="flex items-start sm:items-center gap-3">
+          <div class="shrink-0 w-11 h-11 rounded-xl bg-gold/20 border border-gold/60 flex items-center justify-center text-goldLight font-bold text-lg shadow-inner">
+            45
+          </div>
+          <div>
+            <p class="text-xs sm:text-sm text-amber-200/90 font-medium tracking-wide">
+              ශ්‍රී ලංකා විභාග දෙපාර්තමේන්තුව • 45 SI • පැය 2 (120:00)
+            </p>
+            <h1 class="text-base sm:text-xl font-bold text-white leading-snug">
+              අ.පො.ස. (උසස් පෙළ) විභාගය - 2024 | බෞද්ධ ශිෂ්ටාචාරය (I කොටස - MCQ)
+            </h1>
+          </div>
+        </div>
+
+        <!-- Timer, Mode Toggle & Submit Controls -->
+        <div class="flex flex-wrap items-center justify-between sm:justify-end gap-2 sm:gap-3">
+          <!-- Mode Toggle -->
+          <div class="inline-flex rounded-xl bg-black/25 p-1 border border-white/15" role="group" aria-label="Practice Mode">
+            <button
+              id="btnExamMode"
+              type="button"
+              onclick="setMode('exam')"
+              class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-gold text-maroonDark shadow"
+            >
+              විභාග මාදිලිය (Exam)
+            </button>
+            <button
+              id="btnPracticeMode"
+              type="button"
+              onclick="setMode('practice')"
+              class="px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-amber-100 hover:bg-white/10"
+            >
+              පුහුණු මාදිලිය (Practice)
+            </button>
+          </div>
+
+          <!-- Countdown Timer -->
+          <div id="timerBox" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-indigoDeep border border-amber-300/40 text-amber-100 shadow-sm">
+            <svg class="w-4 h-4 text-amber-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-xs text-amber-200 hidden sm:inline">කාලය:</span>
+            <span id="timerDisplay" class="font-mono text-sm sm:text-base font-bold tracking-wider text-white">120:00</span>
+          </div>
+
+          <!-- Submit Test Button -->
+          <button
+            id="btnSubmitTop"
+            type="button"
+            onclick="openSubmitModal()"
+            class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 active:scale-[0.99] text-maroonDark font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer"
+          >
+            ප්‍රශ්න පත්‍රය භාර දෙන්න (Submit)
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-5 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- Left/Main Area: Results Banner + View Switcher + Questions -->
+    <section class="lg:col-span-8 space-y-5">
+
+      <!-- Results Summary Card (Shown after submission) -->
+      <div id="resultsCard" class="hidden rounded-2xl bg-white border-2 border-gold shadow-xl p-5 sm:p-7 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-parchment pb-4">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-goldLight text-maroon border border-gold/40 mb-1">
+              ප්‍රතිඵල වාර්තාව • Results Summary
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-maroonDark">
+              ඔබගේ ලකුණු මට්ටම සම්පූර්ණයි
+            </h2>
+            <p id="resultSubtext" class="text-sm text-stone-600 mt-0.5"></p>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <button
+              type="button"
+              onclick="scrollToReview()"
+              class="px-4 py-2 rounded-xl bg-indigoDeep hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              සමාලෝචනය බලන්න
+            </button>
+            <button
+              type="button"
+              onclick="restartQuiz()"
+              class="px-4 py-2 rounded-xl bg-maroon hover:bg-maroonDark text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+            >
+              නැවත අරඹන්න (Restart)
+            </button>
+          </div>
+        </div>
+
+        <!-- Score Metrics Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div class="rounded-xl bg-ivory border border-amber-900/15 p-4 text-center">
+            <div class="text-xs text-stone-500 font-medium">මුළු ලකුණු</div>
+            <div id="scoreTotal" class="text-2xl sm:text-3xl font-bold text-maroonDark mt-1">0 / 50</div>
+          </div>
+          <div class="rounded-xl bg-ivory border border-amber-900/15 p-4 text-center">
+            <div class="text-xs text-stone-500 font-medium">ප්‍රතිශතය</div>
+            <div id="scorePercent" class="text-2xl sm:text-3xl font-bold text-indigoDeep mt-1">0.0%</div>
+          </div>
+          <div class="rounded-xl bg-ivory border border-amber-900/15 p-4 text-center">
+            <div class="text-xs text-stone-500 font-medium">නිවැරදි / වැරදි</div>
+            <div id="scoreBreakdown" class="text-lg sm:text-xl font-bold text-emerald-700 mt-2">0 / 0</div>
+          </div>
+          <div class="rounded-xl bg-goldLight border border-gold/50 p-4 text-center">
+            <div class="text-xs text-maroon font-semibold">ඇගයීම / මට්ටම</div>
+            <div id="scoreGrade" class="text-base sm:text-lg font-bold text-maroonDark mt-2">-</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toolbar: View Mode (Single vs All 50) & Progress -->
+      <div class="rounded-2xl bg-white border border-amber-900/15 shadow-sm p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <button
+            id="btnSingleView"
+            type="button"
+            onclick="setDisplayView('single')"
+            class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-maroon text-white shadow-sm transition cursor-pointer"
+          >
+            එක් ප්‍රශ්නය බැගින් (Single)
+          </button>
+          <button
+            id="btnAllView"
+            type="button"
+            onclick="setDisplayView('all')"
+            class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-parchment text-stone-700 hover:bg-amber-200/60 transition cursor-pointer"
+          >
+            සියලු ප්‍රශ්න 50 (All)
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between sm:justify-end gap-4 text-xs sm:text-sm text-stone-600">
+          <span>
+            පිළිතුරු දුන් ප්‍රශ්න: <strong id="answeredCountText" class="text-maroonDark">0</strong> / 50
+          </span>
+          <div class="w-28 sm:w-36 h-2.5 rounded-full bg-parchment overflow-hidden border border-amber-900/10">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-maroon to-gold transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions Container -->
+      <div id="questionsContainer" class="space-y-5"></div>
+
+      <!-- Bottom Single-Question Navigation Bar -->
+      <div id="singleNavFooter" class="rounded-2xl bg-white border border-amber-900/15 shadow-sm p-4 flex items-center justify-between gap-3">
+        <button
+          id="btnPrevQuestion"
+          type="button"
+          onclick="navigateQuestion(currentIndex - 1)"
+          class="px-4 py-2.5 rounded-xl bg-parchment hover:bg-amber-200/70 disabled:opacity-40 disabled:pointer-events-none text-stone-800 font-semibold text-sm transition cursor-pointer"
+        >
+          ← පෙර ප්‍රශ්නය
+        </button>
+
+        <span id="currentQuestionIndicator" class="text-sm font-bold text-maroonDark">
+          ප්‍රශ්නය 1 / 50
+        </span>
+
+        <button
+          id="btnNextQuestion"
+          type="button"
+          onclick="navigateQuestion(currentIndex + 1)"
+          class="px-4 py-2.5 rounded-xl bg-maroon hover:bg-maroonDark disabled:opacity-40 disabled:pointer-events-none text-white font-semibold text-sm shadow transition cursor-pointer"
+        >
+          ඊළඟ ප්‍රශ්නය →
+        </button>
+      </div>
+    </section>
+
+    <!-- Right Sidebar: Question Palette / Navigator -->
+    <aside class="lg:col-span-4">
+      <div class="lg:sticky lg:top-24 rounded-2xl bg-white border border-amber-900/15 shadow-md p-4 sm:p-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-parchment pb-3">
+          <div>
+            <h2 class="text-base font-bold text-maroonDark">ප්‍රශ්න සිතියම (Question Palette)</h2>
+            <p class="text-xs text-stone-500">ඕනෑම ප්‍රශ්නයකට ක්ෂණිකව පිවිසෙන්න</p>
+          </div>
+          <button
+            type="button"
+            onclick="restartQuiz()"
+            title="Restart Quiz"
+            class="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-maroon hover:bg-parchment border border-maroon/20 transition cursor-pointer"
+          >
+            Reset
+          </button>
+        </div>
+
+        <!-- Legend -->
+        <div class="grid grid-cols-2 gap-2 text-xs text-stone-700">
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded bg-emerald-600 inline-block shrink-0"></span>
+            <span>පිළිතුරු දුන් (<span id="legendAnswered">0</span>)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded bg-parchment border border-stone-300 inline-block shrink-0"></span>
+            <span>නොදුන් (<span id="legendUnanswered">50</span>)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded bg-amber-400 border border-amber-600 inline-block shrink-0"></span>
+            <span>සලකුණු කළ (<span id="legendFlagged">0</span>)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-4 h-4 rounded ring-2 ring-maroon bg-white inline-block shrink-0"></span>
+            <span>වත්මන් ප්‍රශ්නය</span>
+          </div>
+        </div>
+
+        <!-- 1 to 50 Grid -->
+        <div id="questionPalette" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-2 max-h-[360px] overflow-y-auto p-1"></div>
+
+        <!-- Sidebar Submit Action -->
+        <div class="pt-2 border-t border-parchment space-y-2">
+          <button
+            type="button"
+            onclick="openSubmitModal()"
+            class="w-full py-2.5 px-4 rounded-xl bg-maroon hover:bg-maroonDark text-white font-bold text-sm shadow-md transition cursor-pointer"
+          >
+            ප්‍රශ්න පත්‍රය භාර දී ලකුණු බලන්න
+          </button>
+          <p class="text-[11px] text-center text-stone-500">
+            පුහුණු මාදිලියේදී තෝරන විටම නිවැරදි පිළිතුර හා විස්තරය පෙන්වයි.
+          </p>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Custom Confirmation Modal (No browser alert/confirm) -->
+  <div id="submitModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full border-2 border-gold shadow-2xl p-6 space-y-4">
+      <h3 class="text-lg font-bold text-maroonDark">ප්‍රශ්න පත්‍රය භාර දීම තහවුරු කරන්න</h3>
+      <p id="modalSummaryText" class="text-sm text-stone-700 leading-relaxed"></p>
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button
+          type="button"
+          onclick="closeSubmitModal()"
+          class="px-4 py-2 rounded-xl bg-parchment hover:bg-stone-200 text-stone-800 text-sm font-semibold transition cursor-pointer"
+        >
+          තවදුරටත් පරීක්ෂා කරන්න
+        </button>
+        <button
+          type="button"
+          onclick="confirmSubmitQuiz()"
+          class="px-4 py-2 rounded-xl bg-maroon hover:bg-maroonDark text-white text-sm font-bold shadow transition cursor-pointer"
+        >
+          ඔව්, භාර දෙන්න
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-parchment border-t border-amber-900/15 py-4 px-4 text-center text-xs text-stone-600 mt-10">
+    <p>
+      අ.පො.ස. (උසස් පෙළ) විභාගය - 2024 • බෞද්ධ ශිෂ්ටාචාරය I කොටස (45 SI) • ස්වයං අධ්‍යයන පුහුණු යෙදුම
+    </p>
+  </footer>
+
+  <script>
+    /**
+     * Complete 50 MCQs from 2024 G.C.E. (A/L) Buddhist Civilization (45 SI) Paper I
+     * Each item includes:
+     *  - id: 1..50
+     *  - question: exact Sinhala question text
+     *  - options: array of 5 strings for choices (1) to (5)
+     *  - correct: 1-based index (1..5) of the correct option
+     *  - explanation: concise Sinhala explanation/reference
+     */
+    const QUESTIONS = [
+      {
+        id: 1,
+        question: "බ්‍රාහ්මණ සම්ප්‍රදායට අයත් ප්‍රමුඛ ඉගැන්වීමක් වූ ආපද් ධර්ම හා සම්බන්ධ පහත සඳහන් ප්‍රකාශ හොඳින් කියවන්න.\nA - ශුද්‍රයාට ආපද් ධර්ම අහිමි විය.\nB - ආපද් ධර්ම දේව නිර්මාණවාදී බ්‍රාහ්මණ ආගමික ඉගැන්වීමකි.\nC - ආපද් ධර්ම මගින් පහළ කුලවල අයට ඉහළ කුලවලට අයත් රැකියාවල නියැලීමට අවස්ථාව ලැබුණි.\nD - ආපදාපන්න අවස්ථාවලදී බමුණෝ සමාජයේ යහ පැවැත්ම වෙනුවෙන් පෙරමුණ ගෙන කටයුතු කළහ.\nE - ආපද් ධර්ම ක්‍රියාත්මක කිරීමේ බලය ක්ෂත්‍රියන්ට පවරා තිබුණි.\nඉහත සඳහන් ප්‍රකාශ අතුරින් ආපද් ධර්ම සම්බන්ධයෙන් නිවැරදි ප්‍රකාශ දෙක ඇතුළත් වරණය තෝරන්න.",
+        options: ["A සහ B", "A සහ C", "B සහ C", "B සහ D", "B සහ E"],
+        correct: 2,
+        explanation: "ආපද් ධර්ම යටතේ විපත්තිකාලීනව වර්ණ/කුල සීමා ලිහිල් වී පහළ වර්ණවලට ඉහළ වර්ණවල වෘත්තීන්හි යෙදීමට ඉඩ සැලසුණු අතර, ශුද්‍රයාට ආපද් ධර්ම අහිමි වූ බව සඳහන් වේ (A සහ C නිවැරදි ය)."
+      },
+      {
+        id: 2,
+        question: "බුද්ධකාලීන භාරතීය සමාජය ක‍්‍රමයෙන් වාණිජකරණයට හා නාගරීකරණයට නතු වූ බව තහවුරු කෙරෙන සාධක රැසක් හඳුනාගත හැකි ය. පහත සඳහන් ප්‍රකාශ අතර ඒ හා සම්බන්ධ සාධක කිහිපයක් අන්තර්ගත ය.\nA - වෙළෙඳුන් වෘත්තීය වශයෙන් සංවිධානය වීම\nB - මුදල් භාවිතයට පැමිණීම\nC - වෙළඳ නගර බිහිවීම\nD - කෘෂිකර්මාන්තය ජීවනෝපාය වීම\nE - අන්තර්ජාතික මාර්ග පද්ධතියක් බිහිවීම\nඉහත සඳහන් ප්‍රකාශ අතුරින් බුද්ධකාලීන භාරතීය සමාජය වාණිජකරණයට හා නාගරීකරණයට නතු වූ බව තහවුරු කෙරෙන සාධක තුනක් ඇතුළත් වරණය තෝරන්න.",
+        options: ["A, B සහ C", "A, B සහ D", "A, C සහ D", "B, C සහ D", "C, D සහ E"],
+        correct: 1,
+        explanation: "වෙළෙඳ ශ්‍රේණි (සංවිධාන), කහවණු ආදී මුදල් භාවිතය සහ සැවැත්, රජගහ, විසාලා වැනි වෙළඳ නගර බිහිවීම (A, B, C) වාණිජකරණය හා නාගරීකරණය පෙන්වන ප්‍රධාන සාධක වේ."
+      },
+      {
+        id: 3,
+        question: "“පෘථිවියේ සියලු ප්‍රාණීන් මරා එක ම මස් ගොඩක් කළ ද ඒ හේතුවෙන් උපදනා පාපයක් නැතැ”යි ඉගැන්වූ බුද්ධකාලීන ආගමික ශාස්තෘවරයා වූයේ,",
+        options: [
+          "අජිත කේසකම්බලී ය.",
+          "පූරණ කස්සප ය.",
+          "මක්ඛලී ගෝසාල ය.",
+          "පකුධ කච්චායන ය.",
+          "සංජය බෙල්ලට්ඨිපුත්ත ය."
+        ],
+        correct: 2,
+        explanation: "අකිරියවාදය ඉගැන්වූ පූරණ කස්සප ආචාර්යවරයා මෙම අදහස ඉදිරිපත් කළේ ය (සාමඤ්ඤඵල සූත්‍රය)."
+      },
+      {
+        id: 4,
+        question: "බුද්ධකාලීන භාරතීය දේශපාලන තොරතුරු ගවේෂණයේදී ප්‍රකට ව පෙනෙන වැදගත් සංකල්පයක් ලෙස “මත්ස්‍ය න්‍යාය\" හඳුනාගත හැකි ය. එය",
+        options: [
+          "රට වැසියන් පාලනය කිරීමේ ක‍්‍රමවේදය හා සම්බන්ධ න්‍යායකි.",
+          "රාජ්‍යයක සම්පත් බෙදී යායුතු ආකාරය පිළිබඳ න්‍යායකි.",
+          "මහා රාජ්‍යයන්ගේ දේශසීමා පුළුල් කර ගැනීමට ක‍්‍රියාත්මක කරන ලද න්‍යායකි.",
+          "අසල්වැසි රාජ්‍යයන් හා සුහද ව කටයුතු කිරීම පිළිබඳ න්‍යායකි.",
+          "කුඩා රාජ්‍යයන්ගේ දේශසීමා පුළුල් කර ගැනීමට ක්‍රියාත්මක කරන ලද න්‍යායකි."
+        ],
+        correct: 3,
+        explanation: "ලොකු මාළුවා පොඩි මාළුවා ගිල දමන්නාක් මෙන් බලවත් මහා රාජ්‍යයන් දුබල කුඩා රාජ්‍යයන් යටත් කර ගනිමින් දේශසීමා පුළුල් කර ගැනීම 'මත්ස්‍ය න්‍යාය' ලෙස හැඳින්වේ."
+      },
+      {
+        id: 5,
+        question: "බ්‍රාහ්මණ ආගමික ඉගැන්වීම් අනුව වානප්‍රස්ථ ආශ්‍රමයේදී තවුස්දම් රැකීම සඳහා වනගත වන විට සිය අභිමතය පරිදි බිරිඳ ද කැටුව යා හැකි විය. එම අනුමැතිය ලැබුණේ,",
+        options: [
+          "බ්‍රාහ්මණ වර්ණයට පමණි.",
+          "බ්‍රාහ්මණ හා ක්ෂත්‍රිය වර්ණ දෙකට පමණි.",
+          "ක්ෂත්‍රිය හා වෛශ්‍ය වර්ණ දෙකට පමණි.",
+          "බ්‍රාහ්මණ, ක්ෂත්‍රිය හා වෛශ්‍ය වර්ණ තුනට පමණි.",
+          "බ්‍රාහ්මණ, ක්ෂත්‍රිය, වෛශ්‍ය හා ශුද්‍ර වර්ණ හතරටම ය."
+        ],
+        correct: 4,
+        explanation: "ද්විජ (උපනතය ලබන) වර්ණ තුන වන බ්‍රාහ්මණ, ක්ෂත්‍රිය සහ වෛශ්‍ය වර්ණවලට චතුර්විධ ආශ්‍රම ධර්ම හිමි වූ අතර වානප්‍රස්ථ අවස්ථාවේදී බිරිඳ සමඟ වනගත වීමේ අනුමැතිය ලැබුණි."
+      },
+      {
+        id: 6,
+        question: "බුදුසසුනේ අගසව් තනතුරු ලැබූ සැරියුත් මුගලන් දෙනම බුදුරදුන්ගේ ශ්‍රාවකයන් වීමට පෙර අයත් ව සිටියේ",
+        options: [
+          "ජෛන ආගමික සම්ප්‍රදායට ය.",
+          "ජටිල ආගමික සම්ප්‍රදායට ය.",
+          "පරිබ්‍රාජක ආගමික සම්ප්‍රදායට ය.",
+          "ආජීවක ආගමික සම්ප්‍රදායට ය.",
+          "අචේලක ආගමික සම්ප්‍රදායට ය."
+        ],
+        correct: 3,
+        explanation: "උපතිස්ස (සැරියුත්) සහ කෝලිත (මුගලන්) දෙනම සංජය පරිබ්‍රාජකයා යටතේ පරිබ්‍රාජක සම්ප්‍රදායේ සිට පසුව බුදුරදුන් වෙත පැමිණියහ."
+      },
+      {
+        id: 7,
+        question: "පහත සඳහන් ප්‍රකාශ හොඳින් කියවන්න.\nA - සියලු සැප දුක් පෙර කරන ලද කර්මයට අනුව සිදු වේ.\nB - දුකින් නිදහස් වීම සඳහා පෙර කරන ලද කර්ම ගෙවා දැමිය යුතු අතර නව කර්ම නො කළ යුතු ය.\nC - කාය දණ්ඩය වඩාත් ප්‍රබල වේ.\nD - සියලු ඇල්දියෙන් වැළකීම උසස් ශීලයකි.\nE - නිත්‍ය වූ ආත්මයක් ඇත.\nඉහත සඳහන් ප්‍රකාශ අතුරින් නිගණ්ඨනාතපුත්ත ආචාර්යවරයාගේ ඉගැන්වීම් වැඩි ම ප්‍රමාණයක් ඇතුළත් වරණය තෝරන්න.",
+        options: [
+          "A, B සහ C",
+          "A, B සහ D",
+          "A, B, C සහ D",
+          "A, B, C සහ E",
+          "A, B, C, D සහ E"
+        ],
+        correct: 3,
+        explanation: "නිගණ්ඨනාතපුත්ත (ජෛන) ඉගැන්වීම් අනුව පෙර කර්මය (A), පැරණි කර්ම ගෙවා අලුත් කර්ම නොකිරීම (B), කාය දණ්ඩයේ ප්‍රබලත්වය (C) සහ සීතල වතුරෙන් වැළකීම ආදී තපස් ශීලය (D) වැදගත් වේ."
+      },
+      {
+        id: 8,
+        question: "හිස් තැනට වඩාත් සුදුසු වාක්‍යය තෝරන්න.\nබුද්ධකාලීන ශ්‍රමණ සම්ප්‍රදායට ඇතුළත් ජටිලයෝ",
+        options: [
+          "අතින් දණ්ඩක් ගෙන සිටි අතර, අත්තකිලමථානුයෝගී ව උග්‍ර තපස් ව්‍රත අනුගමනය කළහ.",
+          "තමා කෙළෙස් ගැටවලින් තොර යැයි කියා සිටියහ.",
+          "ගිනි දෙවියන් පිදීමට හා උදක පාරිශුද්ධියට ප්‍රමුඛතාවක් ලබා දුන්හ.",
+          "සන්සුන් ඉඳුරන් ඇති කසාවත් දරන සංවර පිරිසක් වූහ.",
+          "ශ්වේතාම්බර හා දිගම්බර යනුවෙන් දෙපිරිසක් ලෙස උග්‍ර තපස් ව්‍රත අනුගමනය කළහ."
+        ],
+        correct: 3,
+        explanation: "උරුවෙල් කාශ්‍යප ආදී ජටිල තාපසවරු අග්නි පූජාවට හා ජල ස්නානයෙන් සිදුවන පාරිශුද්ධියට මුල්තැන දුන්හ."
+      },
+      {
+        id: 9,
+        question: "බඹ සුර යකුන් තද\nදමනය කර තමන්\nසෙත් දී මුනිඳු සඳ\nඉහත සඳහන් කවියෙන් විස්තර වන බුදුගුණය නම් කරන්න.",
+        options: [
+          "විජ්ජාචරණ සම්පන්න",
+          "පුරිසදම්මසාරථී",
+          "භගවා",
+          "ලෝකවිදූ",
+          "සත්ථා"
+        ],
+        correct: 2,
+        explanation: "දමනය කළ යුතු පුරුෂයන් දමනය කිරීමේ ශ්‍රේෂ්ඨ සාරථියා වීම 'පුරිසදම්මසාරථී' බුදුගුණයයි."
+      },
+      {
+        id: 10,
+        question: "\" බුදුරජාණන් වහන්සේ ලෞකික ආශා නමැති ගිනිගත් නිවස තුළ දැවෙන දරුවන් බේරා ගැනීමට මාර්ග යොදන්නා වූත්, බේරා ගැනීමෙන් පසු නිර්වාණය නමැති ආරක්ෂක ස්ථානයට මග පෙන්වන්නා වූත් පියකු බඳු ය.”\nබුදුරජාණන් වහන්සේ පිළිබඳ මෙම ඇගයීම සිදු කරන ලද්දේ කවුරුන් විසින්ද?",
+        options: [
+          "මහාචාර්ය ලක්ෂ්මී නරසු",
+          "මහාචාර්ය සොණ්ඩර්ස්",
+          "එඩ්වින් ආර්නෝල්ඩ්",
+          "ඇල්බට් අයින්ස්ටයින්",
+          "මැක්ස් මුලර්"
+        ],
+        correct: 2,
+        explanation: "මහාචාර්ය කෙනත් සොණ්ඩර්ස් විසින් බුදුරජාණන් වහන්සේගේ මගපෙන්වීම මෙම උපමාවෙන් අගය කර ඇත."
+      },
+      {
+        id: 11,
+        question: "“ ඵුට්ඨස්ස ලෝක ධම්මේහි චිත්තං යස්ස න කම්පති” යන මංගල සූත්‍රාගත ප්‍රකාශයෙන් ප්‍රකට කෙරෙන මංගල කරුණ බුදුරජාණන් වහන්සේගේ",
+        options: [
+          "පද්මාකාර ජීවිතයට",
+          "අරහං බුදු ගුණයට",
+          "මහා ප්‍රඥාවට",
+          "මහා කරුණාවට",
+          "තාදී ගුණයට"
+        ],
+        correct: 5,
+        explanation: "අටලෝ දහමින් සිත කම්පා නොවීම 'තාදී ගුණය' (සමබර නොසැලෙන ස්වභාවය) ලෙස හැඳින්වේ."
+      },
+      {
+        id: 12,
+        question: "පහත දැක්වෙන්නේ විශාඛා මහෝපාසිකාවගේ හා නකුලමාතාවගේ චරිත කථාවලට අදාළ ප්‍රකාශ පහකි.\nA - අගතනතුරු ලබා තිබීම\nB - ස්වාමියාගේ පියාණන්ට ධර්මාවබෝධය සඳහා මගපෙන්වීම\nC - සොළොස්වසක් තිස්සේ ගෘහස්ථ බ්‍රහ්මචරියාව පිරිම\nD - ආරාම තනා බුදුරදුන්ට පූජා කිරීම\nE - මාර්ගඵල වලට පත් වී සිටීම\nඉහත ප්‍රකාශ අතුරින් විශාඛා මහෝපාසිකාවගේ හා නකුලමාතාවගේ චරිත කථාවලට පොදු වූ ප්‍රකාශ දෙක පමණක් ඇතුළත් වරණය කුමක් ද?",
+        options: ["A සහ B", "A සහ C", "A සහ D", "A සහ E", "B සහ C"],
+        correct: 4,
+        explanation: "දෙදෙනාම බුදුසසුනේ අගතනතුරු ලැබූ උපාසිකාවන් වන අතර (A) සෝවාන් ආදී මාර්ගඵල ලාභීන් ද වෙති (E)."
+      },
+      {
+        id: 13,
+        question: "පහත දැක්වෙන්නේ බුද්ධකාලීන ආගමික හා දාර්ශනික පසුබිම තුළ ප්‍රකට ව පැවති ඉගැන්වීම් කිහිපයකි.\nA - දේව නිර්මාණවාදය\nB - නියතිවාදය\nC - පුබ්බේකත හේතුවාදය\nD - අධිච්චසමුප්පන්නවාදය\nE - අමරාවික්ඛේපවාදය\nඅග්ගඤ්ඤ සූත්‍රාගත විවරණයෙන් ප්‍රතික්ෂේප වන බ්‍රාහ්මණ සමාජ සංස්ථාවන්ගේ ප්‍රභවය හා විකාශය පිළිබඳ ඉගැන්වීම ඇතුළත් වරණය වන්නේ කුමක් ද?",
+        options: ["A", "B", "C", "D", "E"],
+        correct: 1,
+        explanation: "බ්‍රහ්මයාගෙන් කුල/සමාජ සංස්ථා මැවුණු බව කියන දේව නිර්මාණවාදය (A) අග්ගඤ්ඤ සූත්‍රය මගින් ප්‍රතික්ෂේප කර හේතුඵලවාදී සමාජ විකාශය පෙන්වා දෙයි."
+      },
+      {
+        id: 14,
+        question: "බුදු දහම කම්මවාදී, කිරියවාදී, විරියවාදී ධර්මයකි. එබැවින් පුද්ගලයා විසින් සචේතනික ව සිදුකරනු ලබන හොඳ-නරක ක්‍රියාවල විපාකය කර්තෘ විසින් ම දැරිය යුතුබව බුදුසමයේ ස්ථාවරයයි. සචේතනික ක‍්‍රියාවේ විපාකය කර්තෘ වෙත පැවරෙන බැවින් ක්‍රියාව කරන්නාට ඒ සඳහා ___________ පවත්නා බව බුදුසමයේ පිළිගැනීමයි.",
+        options: [
+          "ස්වච්ඡන්දතාවක්",
+          "විපාකයක්",
+          "විනිශ්චයක්",
+          "උත්තේජනයක්",
+          "අධිෂ්ඨානයක්"
+        ],
+        correct: 3,
+        explanation: "සචේතනික ක්‍රියාවේ විපාකය කර්තෘට පැවරීම මගින් තම ක්‍රියාවන්හි හොඳ-නරක පිළිබඳ වගකීම හා විනිශ්චය (සාරධර්ම වගකීම) තහවුරු වේ."
+      },
+      {
+        id: 15,
+        question: "පාලන තන්ත‍්‍රයේ යහපැවැත්ම පිණිස පාලකයා විසින් අනුගමනය කළයුතු දේශපාලන මූලධර්ම රැසක් බෞද්ධ දේශපාලන දර්ශනයේ අන්තර්ගත වේ. එහෙත් ඇතැම් පාලකයෝ තම ඥාතීන්ට හා හිතවතුන්ට පක්ෂග්‍රාහී ව කටයුතු කිරීමෙන් හා විරුද්ධවාදීන්ගෙන් පළි ගනිමින් වෛර සහගත ව කටයුතු කිරීමෙන් රාජ්‍යය හා ජනතාව පරිහානියට පත් කරති. මෙවැනි තත්ත්වයක් ඇතිවීමට වඩාත් ම බලපෑ හැකි හේතුව ලෙස හඳුනාගත හැක්කේ පාලකයන්",
+        options: [
+          "සතර සංග්‍රහ වස්තු අනුගමනය නො කිරීමයි.",
+          "පඤ්චශීල ප්‍රතිපදාව අනුගමනය නො කිරීමයි.",
+          "ලෝක පාලන ධර්ම අනුව කටයුතු නො කිරීමයි.",
+          "සප්ත අපරිහානිය ධර්ම අනුගමනය නො කිරීමයි.",
+          "සතර අගතියෙන් අගතියට යාමයි."
+        ],
+        correct: 5,
+        explanation: "ඡන්ද (පක්ෂග්‍රාහීත්වය), ද්වේෂ (වෛරය/පළිගැනීම), භය සහ මෝහ යන සතර අගතියට යාමෙන් පාලනය පිරිහේ."
+      },
+      {
+        id: 16,
+        question: "බෞද්ධ දේශපාලන සිද්ධාන්ත අනුව පාලකයන් මහජනතාවගේ ප්‍රශ්න හා දුක් පීඩාවන් පිළිබඳ සංවේදී ව හා නම්‍යශීලී ව ක්‍රියා කළ යුතු ය. දශ රාජධර්ම අතර මෙම අදහස ඇතුළත් රාජධර්මය ලෙස හඳුනාගත හැක්කේ,",
+        options: [
+          "ඉවසීමයි.",
+          "පරිත්‍යාගයයි.",
+          "මෘදුබවයි.",
+          "ඍජු බවයි.",
+          "විරෝධාකල්ප නො දැරීමයි."
+        ],
+        correct: 3,
+        explanation: "දශ රාජධර්මයෙහි 'මෘදුබව' (අජ්ජව/මද්දව) මගින් ජනතා දුක් පීඩා හමුවේ මොළොක්ව හා සංවේදීව ක්‍රියා කිරීම අදහස් කෙරේ."
+      },
+      {
+        id: 17,
+        question: "රාජ්‍ය පාලනයට අදාළ බෞද්ධ මූලාශ්‍රයාගත අදහස් ඇතුළත් පහත සඳහන් ප්‍රකාශ කියවන්න.\nA - දරිද්‍රතාවෙන් පීඩා විඳින ජනතාවට යහපත් ආර්ථිකයක් ගොඩනගා ගැනීමට අනුග්‍රහ දැක්විය යුතු ය.\nB - තම රටෙහි වෙසෙන උගත් මහණ බමුණන්ගේ අවවාද අනුශාසනා ලබාගත යුතු ය.\nC - වැඩිහිටියන්ට ගරු බුහුමන් කළයුතු අතර ඔවුන්ගේ වචනවලට සවන් දිය යුතු ය.\nD - රට තුළ උද්ගත වන අපරාධ මර්දනය කොට ජනතාවට බියෙන් තොර ව ජීවත්වීමට අවශ්‍ය පරිසරය සකස් කළයුතු ය.\nE - ඒ ඒ ක්ෂේත‍්‍රවල දක්ෂතා හා හැකියාව ඇති පිරිස් හඳුනාගෙන අවශ්‍ය ප්‍රාග්ධනය, වැටුප්, ආහාර, යටිතල පහසුකම් ආදිය සැපයීමෙන් රටවැසියන්ගේ ආර්ථිකය නගා සිටුවිය යුතු ය.\nඉහත සඳහන් ප්‍රකාශ අතුරින් දස සක්විතිවත්වලට ඇතුළත් නො වන ප්‍රකාශ දෙක ඇතුළත් වරණය තෝරන්න.",
+        options: ["A සහ B", "A සහ C", "A සහ D", "B සහ E", "C සහ E"],
+        correct: 4,
+        explanation: "කූටදන්ත සූත්‍රයේ ආර්ථික සංවර්ධන උපදේශ (E) සහ දස රාජධර්ම/අපරිහානිය ධර්ම ආශ්‍රිත කරුණු සමඟ සසඳන විට B සහ E දස සක්විතිවත්වලට සෘජුව අයත් නොවේ."
+      },
+      {
+        id: 18,
+        question: "පහත සඳහන් ප්‍රකාශ අතුරින් හොඳ - නරක ක්‍රියා විනිශ්චයෙහිලා යොදා ගැනෙන නිර්ණායකයක් ලෙස නොසැලකිය හැකි ප්‍රකාශය තෝරන්න.",
+        options: [
+          "තමා උපමා කොට ප්‍රාණඝාතාදී පාපක්‍රියාවලින් වැළකිය යුතු ය.",
+          "පරලොව යන පුද්ගලයන්ට පිහිටට පැමිණෙන්නේ පින බැවින් පිංකම් කළයුතු ය.",
+          "විපාකය දුක් සහගත වේ නම් එබඳු ක්‍රියා සිදුකිරීමෙන් වැළකිය යුතු ය.",
+          "කැඩපතකින් තම සිරුර නිරීක්ෂණය කරන්නා සේ කායික, වාචික හා මානසික ක්‍රියා ප්‍රත්‍යවේක්ෂා කළයුතු ය.",
+          "රාග, ද්වේෂ, මෝහ සහගත ක්‍රියා පාප ක්‍රියා ලෙස තීරණය කළයුතු ය."
+        ],
+        correct: 2,
+        explanation: "අම්බලට්ඨික රාහුලෝවාද සූත්‍රයට අනුව තමාට හෝ අනුන්ට දුක් ගෙන දෙන (ව්‍යාබාධ) ක්‍රියා අකුසල්/නරක ලෙස විනිශ්චය කෙරේ; පරලොව පිහිට ගැන ප්‍රකාශය ක්‍රියා විනිශ්චය නිර්ණායකයක් නොවේ."
+      },
+      {
+        id: 19,
+        question: "“වෙසක් පොහෝ දින ගමේ විහාරස්ථානයට පැමිණි උපාසක උපාසිකාවෝ පෙහෙවස් සමාදන් වීමෙන් අනතුරුව ගාථා සජ්ඣායනය කරමින් උදෑසන ආහාර බුද්ධපූජාව පැවැත්වූහ. සියලු ලෝ සතුන් වෙත මෙත් සිත පතුරවමින් මෛත්‍රී භාවනාවේ යෙදුණු සිල්වත් පිරිස ධර්ම දේශනාවට සවන් දුන්නේ කර්ම ඵල විශ්වාසය පිළිබඳ සම්‍යග් දෘෂ්ටියෙහි පිහිටා ය.\"\nඉහත සඳහන් ප්‍රකාශය තුළ දශ පුණ්‍ය ක්‍රියාවලින් කොපමණ ප්‍රමාණයක් අන්තර්ගත වේද?",
+        options: ["දෙකක්", "තුනක්", "හතරක්", "පහක්", "හයක්"],
+        correct: 4,
+        explanation: "පෙහෙවස්/සිල් (ශීලමය), බුද්ධපූජා දානය (දානමය), මෛත්‍රී භාවනාව (භාවනාමය), ධර්ම දේශනාවට සවන් දීම (ධම්මස්සවණමය) සහ සම්‍යග් දෘෂ්ටිය (දිට්ඨිජුකම්ම) යන පහ (5) දක්නට ලැබේ."
+      },
+      {
+        id: 20,
+        question: "රිය සකට කඩ ඇණයක් නැති කල්හි රථයට ගමනක් නැත. කඩ ඇණය ඇති කල්හි ම රියෙහි මනා ගමනය සිදු වේ. එපරිද්දෙන් සමාජයක් යහපත් ආකාරයෙන් පැවතීමට අවශ්‍ය සාධක හතරක් බෞද්ධ ඉගැන්වීම්වල ඇතුළත් වේ. ඒවා",
+        options: [
+          "සතර බ්‍රහ්ම විහරණ",
+          "සතර සංග්‍රහ වස්තු",
+          "සතර අගති විරති",
+          "සතර කර්මක්ලේෂ",
+          "සතර සතිපට්ඨාන"
+        ],
+        correct: 2,
+        explanation: "දානය, පියවචනය, අත්ථචරියාව සහ සමානාත්මතාව යන සතර සංග්‍රහ වස්තු රථයේ කඩ ඇණය මෙන් සමාජ සමගියට හේතු වේ."
+      },
+      {
+        id: 21,
+        question: "ගෘහස්ථ ජීවිතයේ ආචාර ධර්ම පිළිබඳ මෙන් ම ගිහියාගේ ආර්ථික කටයුතු පිළිබඳ ව ද වටිනා සදුපදේශයන් අන්තර්ගත සූත්‍රයක් ලෙස සිගාලෝවාද සූත්‍රය හඳුනා ගතහැකි ය. එහි දැක්වෙන ‘ඒකේන භෝගේ භුජෙය්‍ය...’ යනාදි ගාථාවෙන් පැහැදිලි වන්නේ",
+        options: [
+          "ධනෝපායනය",
+          "ධන කළමනාකරණය",
+          "ධන සංරක්ෂණය",
+          "ධන ආයෝජනය",
+          "ධන පරිභෝජනය"
+        ],
+        correct: 2,
+        explanation: "ධනය එක් කොටසක් පරිභෝජනයට, දෙකක් කර්මාන්ත/ආයෝජනයට සහ සිව්වන කොටස ආපදා සඳහා තැන්පත් කිරීම ධන කළමනාකරණය පෙන්වයි."
+      },
+      {
+        id: 22,
+        question: "බුදුසමය අනුදත් පරිභෝජන දර්ශනයෙහි එන සංකල්ප අතුරින් ‘නිස්සරණ පඤ්ඤෝ” යන්නෙන් අදහස් කර ඇත්තේ,",
+        options: [
+          "ගැති නො වී ධනය පරිහරණය කළයුතු ය’ යන්නයි.",
+          "'මූර්ජා නො වී ධනය පරිහරණය කළයුතු ය' යන්නයි.",
+          "‛ආදීනව දකිමින් ධනය පරිහරණය කළයුතු ය' යන්නයි.",
+          "අත්හැරීමේ නුවණින් යුතු ව ධනය පරිහරණය කළයුතු ය' යන්නයි.",
+          "'දැඩි උපාදානයෙන් තොර ව ධනය පරිහරණය කළයුතු ය' යන්නයි."
+        ],
+        correct: 4,
+        explanation: "'නිස්සරණ පඤ්ඤෝ' යනු ලෞකික සැප හා ධනයෙන් නික්මීමේ / අත්හැරීමේ ප්‍රඥාවෙන් යුක්තව පරිභෝජනය කිරීමයි."
+      },
+      {
+        id: 23,
+        question: "පරිසර සංරක්ෂණය පිළිබඳ ඉතා වැදගත් තොරතුරු ඇතුළත් සංයුත්තනිකායේ වනරෝප සූත්‍රයෙහි දිවා රෑ පිං වැඩෙන පරිසර හිතකාමී කටයුතු කිහිපයක් දක්වා තිබේ. පහත සඳහන් වරණ අතුරින් එම සූත්‍රයෙහි සඳහන් නො වන පිංකමක් වන්නේ,",
+        options: [
+          "අම්බලම් ඉදිකිරීමයි.",
+          "වනාන්තර වැවීමයි.",
+          "පාලම් ඒ දඬු තැනීමයි.",
+          "පැන් පොකුණු තැනීමයි.",
+          "මංමාවත් තැනීමයි."
+        ],
+        correct: 1,
+        explanation: "වනරෝප සූත්‍රයෙහි ආරාම/වන රෝපණය, පැන් පොකුණු, ඒ දඬු/පාලම් සහ මංමාවත් සඳහන් වන අතර අම්බලම් ඉදිකිරීම එහි සඳහන් නොවේ."
+      },
+      {
+        id: 24,
+        question: "බුදුරජාණන් වහන්සේ තමන් වහන්සේ හඳුන්වා දීමේදී මඩෙන් ඉස්මතු ව ප්‍රබුද්ධ වන නෙළුම මඩෙහි යළි නො ගැටී, පවිත‍්‍ර ව සුවඳවත් ව තිබෙන්නාක් මෙන්, තමන් ද කිලිටි වූ කාමභෝගී ජන සමාජයෙහි ඉපිද, ඉන් ඉස්මතු ව ශ්‍රේෂ්ඨ වූ සම්බුද්ධත්වයට පත් වූ බව දැක්වෙන උපමාවෙන් නිරූපණය වන්නේ උන්වහන්සේගේ",
+        options: [
+          "පද්මාකාර ජීවිතයයි.",
+          "තාදී ගුණයයි.",
+          "පරමාදර්ශී බවයි.",
+          "පරාර්ථකාමීත්වයයි.",
+          "පරිසර හිතකාමීත්වයයි."
+        ],
+        correct: 1,
+        explanation: "ලෝකය තුළ ඉපිද ලෝකයෙන් නොඇලී සිටීම (දෝණ සූත්‍රයේ නෙළුම් උපමාව) බුදුරදුන්ගේ 'පද්මාකාර ජීවිතය' / පාරිශුද්ධත්වය පෙන්වයි."
+      },
+      {
+        id: 25,
+        question: "පහත සඳහන් ප්‍රකාශ අවධානයෙන් කියවන්න.\nA - බුදුසසුන තුළ පැවැති විෂමතා දුරලීමට කාශ්මීරයේ කුණ්ඩලවන විහාරයේදී ධර්ම සංගායනාවක් පැවැත්වීම\nB - එම සංගායනාව අවසානයේදී විභාෂා නමින් අටුවා ග්‍රන්ථ සම්පාදනය කිරීම .\nC - සංගායිත ධර්මය තඹපත්වල ලියා මඤ්ජුසාවක බහා ස්තූපයක තැන්පත් කිරීම\nD - සංගායනාවෙන් අනතුරුව මධ්‍යාසියාව කේන්ද්‍රකර ගනිමින් ධර්ම ප්‍රචාරක වැඩ පිළිවෙළක් ඇරඹීම\nඉහත සඳහන් ප්‍රකාශ අතුරින් කණිෂ්ක රජතුම‍ාගේ අනුග්‍රහයෙන් පවත්වන ලද සිවුවන ධර්ම සංගායනාවට අදාළ වැඩි ම කරුණු ගණනක් ඇතුළත් වරණය තෝරන්න.",
+        options: [
+          "A සහ B",
+          "A, B සහ C",
+          "A, B සහ D",
+          "B, C සහ D",
+          "A, B, C සහ D"
+        ],
+        correct: 2,
+        explanation: "කණිෂ්ක සංගායනාව කුණ්ඩලවනයේදී පැවැත්වීම (A), මහාවිභාෂා ශාස්ත්‍රය සම්පාදනය (B) සහ තඹපත්වල ලියා ස්තූපයක තැන්පත් කිරීම (C) යන කරුණු ඊට අදාළ වේ."
+      },
+      {
+        id: 26,
+        question: "ඒ ඒ දිශාවන්ට අයත් පුද්ගලයන් විසින් ඉටු කළයුතු යුතුකම් හා වගකීම් හැට එකක් සිගාලෝවාද සූත්‍රයේ ඇතුළත් වේ. ඉන් පහක් පහත දැක් වේ.\nA - කළ්‍යාණෙන මනසා අනුකම්පති (යහපත් සිතින් අනුකම්පා කිරීමෙන්)\nB - පාපා නිවාරෙන්ති (පවින් වැළැක්වීමෙන්)\nC - සිප්පං සික්ඛාපෙන්ති (ශිල්පීය ඥානය ලබාදීමෙන්)\nD - කළ්‍යාණෙ නිවෙසෙන්ති (යහපතෙහි යෙදවීමෙන්)\nE - සුවිනීතං විනෙන්ති (මනාව හික්මවාලීමෙන්)\nඉහත සඳහන් ප්‍රකාශ අතුරින් දෙමාපියන් හා මහණ බමුණන් යන දෙපක්ෂයේ ම යුතුකමක් වන්නේ කුමක් ද?",
+        options: ["A", "B", "C", "D", "E"],
+        correct: 2,
+        explanation: "පවින් වැළැක්වීම ('පාපා නිවාරෙන්ති') දෙමාපියන්ගේ මෙන්ම මහණ බමුණන්ගේ ද පොදු යුතුකමක් ලෙස සිගාලෝවාද සූත්‍රයේ දැක්වේ."
+      },
+      {
+        id: 27,
+        question: "පිරිහීමේ දොරටුවක් ලෙස පරාභව සූත්‍රයෙහි ඇතුළත් නොවන කරුණ වන්නේ,",
+        options: [
+          "නින්දේ ඇලීමයි.",
+          "පිරිස් සමග කාලය ගතකිරීමයි.",
+          "සතර අගතියෙන් අගතියට යාමයි.",
+          "අලස බවයි.",
+          "නිතර කිපෙන සුළුබවයි."
+        ],
+        correct: 3,
+        explanation: "නිදිබර බව, ඇසුරට ඇලීම, අලසකම සහ කෝපය පරාභව සූත්‍රයේ එන අතර 'සතර අගතියට යාම' එහි පිරිහීමේ කරුණක් ලෙස නොදැක්වේ."
+      },
+      {
+        id: 28,
+        question: "පහත සඳහන් කරුණු අතුරින් මංගල සූත්‍රයෙහි ඇතුළත් මංගල කරුණක් වන්නේ,",
+        options: [
+          "අල්ප කෘත්‍ය ඇති බවයි.",
+          "සැහැල්ලු පැවතුම් ඇති බවයි.",
+          "පෙර කළ පිං ඇති බවයි.",
+          "ශාන්ත වූ ඉන්ද්‍රියන් ඇති බවයි.",
+          "අනතිමානී බවයි."
+        ],
+        correct: 5,
+        explanation: "'ගාරවෝ ච නිවාතෝ ච' (ගරු කිරීම සහ නිහතමානී/අනතිමානී බව) මංගල සූත්‍රයේ සඳහන් මංගල කරුණකි."
+      },
+      {
+        id: 29,
+        question: "අත්තානං වේ පියං ජඤ්ඤා\nරක්ඛෙය්‍ය නං සුරක්ඛිතං\nතිණ්ණමඤ්ඤතරං යාමං\nමෙම ධම්මපද ගාථාවේ හිස් තැනට සුදුසු පදය තෝරන්න.",
+        options: [
+          "තං වෙ පරම දුක්කරං",
+          "පටිජග්ගෙය්‍ය පණ්ඩිතො",
+          "පුරාණානි අනුත්ථුනං",
+          "වජිරං' වමමයං මණං",
+          "සෙය්‍යො හොති න පාපියො"
+        ],
+        correct: 2,
+        explanation: "අත්තවග්ගයේ 'අත්තානං චේ පියං ජඤ්ඤා රක්ඛෙය්‍ය නං සුරක්ඛිතං / තිණ්ණමඤ්ඤතරං යාමං පටිජග්ගෙය්‍ය පණ්ඩිතො' යන ගාථාවේ දෙවන පාදය 'පටිජග්ගෙය්‍ය පණ්ඩිතො' වේ."
+      },
+      {
+        id: 30,
+        question: "පළමු ධර්ම සංගායනාවේදී ගනු ලැබූ තීරණයකට අනුව ධර්මධර හා විනයධර මහ තෙරවරුන් ප්‍රධාන උන්වහන්සේලාගේ ශිෂ්‍යානුශිෂ්‍ය පරම්පරාවලට ධර්ම විනය කටපාඩමින් පවත්වාගෙන යාමට පවරන ලදී. එම තීරණයට අනුව අංගුත්තර නිකාය කටපාඩමින් පවත්වාගෙන යාමට පවරන ලද්දේ,",
+        options: [
+          "ආනන්ද මහරහතන් වහන්සේ ප්‍රමුඛ ශිෂ්‍යානුශිෂ්‍ය පරම්පරාවටයි.",
+          "සැරියුත් මහරහතන් වහන්සේගේ ශිෂ්‍යානුශිෂ්‍ය පරම්පරාවටයි.",
+          "මහාකාශ්‍යප මහරහතන් වහන්සේ ප්‍රමුඛ ශිෂ්‍යානුශිෂ්‍ය පරම්පරාවටයි.",
+          "උපාලි මහරහතන් වහන්සේ ප්‍රමුඛ ශිෂ්‍යානුශිෂ්‍ය පරම්පරාවටයි.",
+          "අනුරුද්ධ මහරහතන් වහන්සේ ප්‍රමුඛ ශිෂ්‍යානුශිෂ්‍ය පරම්පරාවටයි."
+        ],
+        correct: 5,
+        explanation: "අංගුත්තර නිකාය රැකීම (අංගුත්තර භාණක පරම්පරාව) අනුරුද්ධ මහරහතන් වහන්සේ ප්‍රමුඛ පරම්පරාවට පැවරිණි."
+      },
+      {
+        id: 31,
+        question: "පළමු ධර්ම සංගායනාව පිළිබඳ චුල්ලවග්ග පාළියේ සඳහන් විස්තරයට අනුව මහාකාශ්‍යප හිමියන් සංගායනාව පැවැත්වීම පිළිබඳ යෝජනාව ඉදිරිපත් කරමින් සංගීතිකාරක භික්ෂූන් හමුවේ කරන ලද ප්‍රකාශය වන්නේ,",
+        options: [
+          "\"අනාගතයෙහි අධර්මය හා අවිනය ප්‍රබල වී ධර්මය හා විනය දුර්වල වේ” යන්නයි.",
+          "“අනාගතයෙහි ධර්මය හා විනය ප්‍රබල වී අධර්මය හා අවිනය දුර්වල වේ\" යන්නයි.",
+          "“අනාගතයෙහි අධර්මවාදීන් හා අවිනයවාදීන් දුර්වල වී ධර්මවාදීන් හා විනයවාදීන් ප්‍රබල වේ” යන්නයි.",
+          "\"අනාගතයෙහි ශාසනය තුළ ධර්ම විනය සම්බන්ධයෙන් බරපතල ගැටලු ඇති වේ” යන්නයි.",
+          "“සංගායනාවෙන් ශාසනය පිරිසිදු වන බැවින් අනාගතයෙහි ධර්ම විනය සම්බන්ධයෙන් ගැටලු ඇති නො වේ” යන්නයි."
+        ],
+        correct: 1,
+        explanation: "අධර්මය හා අවිනය දීප්තිමත් වී ධර්මය හා විනය පිරිහෙන බව දැක ධර්ම විනය සංගායනා කිරීමට මහාකාශ්‍යප හිමියෝ යෝජනා කළහ."
+      },
+      {
+        id: 32,
+        question: "ප්‍රථම ධර්ම සංගායනාවේදී මුලින් විනය සංගායනා කිරීමට තීරණය කෙළේ",
+        options: [
+          "‘මුලින් ම විනය සංගායනා කළ යුතු යැ'යි බුද්ධ නියමයක් පැවති නිසා ය.",
+          "විනයධර භික්ෂූන්ගේ බලපෑම ප්‍රබල වූ නිසා ය.",
+          "'ධර්මයට වඩා විනය උසස් යැ'යි සම්මතයක් පැවති නිසා ය.",
+          "විනය වනාහි ශාසනයේ ආයුෂ ලෙස සැලකූ නිසා ය.",
+          "ශාසනය තුළ විනය පිරිහී පැවති නිසා ය."
+        ],
+        correct: 4,
+        explanation: "“විනයෝ නාම බුද්ධසාසනස්ස ආයු” — විනය ශාසනයේ ආයුෂ ලෙස සැලකූ බැවින් මුලින්ම විනය සංගායනා කෙරිණි."
+      },
+      {
+        id: 33,
+        question: "'දුසිල් භික්ෂූන් සමග විනය කර්ම කළ නො හැකි යැ'යි ධර්මාශෝක රාජ්‍ය සමයෙහි ශික්ෂාකාමී භික්ෂූහු විනය කර්ම සිදුකිරීමෙන් වැළකී සිටියහ. මෙම ගැටලුව විසඳීමෙහිලා අශෝක රජතුමා ගත් ප්‍රමුඛ පියවර කුමක්ද?",
+        options: [
+          "අශෝක රජතුමා මොග්ගලීපුත්ත තිස්ස මාහිමියන්ගෙන් කරුණු විමසා බැලීමයි.",
+          "විනය කර්ම කරන ලෙස රාජ නියෝගයක් නිකුත් කිරීමයි.",
+          "කරුණු සොයා බැලීමට ඇමතිවරයකු පත් කිරීමයි.",
+          "විනය කර්ම සිදු නො කරන්නේ නම් බුදුසසුනට රාජ්‍යානුග්‍රහය නො දීමට තීරණය කිරීමයි.",
+          "ගැටලුව විසඳීමට මහ තෙරවරුන් පස්නමකගෙන් යුතු උබ්බාහිකාවක් පත්කිරීමයි."
+        ],
+        correct: 3,
+        explanation: "අශෝක රජතුමා මුලින්ම ඇමතිවරයකු යවා කරුණු විමසා බැලීමට පියවර ගත්තේ ය."
+      },
+      {
+        id: 34,
+        question: "ධර්මාශෝක අධිරාජයා බෞද්ධයකු වුව ද අනෙකුත් ආගමිකයන්ට අවශ්‍ය පහසුකම් සපයා දුන් බවත්, ආජීවකයන්ට ආරාම පූජා කළ බවත් සඳහන් වන්නේ,",
+        options: [
+          "කාල්සි ගිරි ලිපියේ ය.",
+          "ගිරිනාර් ගිරි ලිපියේ ය.",
+          "බරාබර් ගිරි ලිපියේ ය.",
+          "භාබ්‍රෑ ගිරි ලිපියේ ය.",
+          "කන්දහාර් ගිරි ලිපියේ ය."
+        ],
+        correct: 3,
+        explanation: "බරාබර් (Barabar) ගුහා/ගිරි ලිපි මගින් අශෝක රජු ආජීවකයන්ට ලෙන්/ආරාම පූජා කළ බව තහවුරු වේ."
+      },
+      {
+        id: 35,
+        question: "භාරතීය බෞද්ධ විශ්වවිද්‍යාල හා සම්බන්ධ ප්‍රකාශ කිහිපයක් පහත දැක්වේ.\nA - මහල් නවයකින් හා මන්දිර තුනකින් සමන්විත පුස්තකාලයක් පැවතුණි.\nB - ශ්‍රාවකයාන බුදුසමයේ කේන්ද්‍රස්ථානය විය.\nC - ආකාශ වස්තු පර්යේෂණාගාරයක් තිබුණි.\nD - විශ්ව විද්‍යාලය මධ්‍යයේ 'විද්‍යාගෘහ' නමින් ප්‍රධාන දේශන ශාලාවක් විය.\nE - පුස්තකාල අරමුදලක් පිහිටුවා තිබුණි.\nඉහත ප්‍රකාශ අතුරින් වික්‍රමශිලා විශ්වවිද්‍යාලය සම්බන්ධයෙන් නිවැරදි ප්‍රකාශය ඇතුළත් වරණය තෝරන්න.",
+        options: ["A", "B", "C", "D", "E"],
+        correct: 3,
+        explanation: "වික්‍රමශිලා විශ්වවිද්‍යාලයේ ආකාශ වස්තු නිරීක්ෂණ/පර්යේෂණාගාරයක් පැවති බව සඳහන් වේ (රත්නසාගර/ධර්මපාල අධ්‍යයන සම්ප්‍රදාය සමඟ)."
+      },
+      {
+        id: 36,
+        question: "ප්‍රාග් බෞද්ධ යුගයේදී ලක්වැසියන් දෙවියන් පිළිබඳ විශේෂ ගෞරවාදරයක් දැක් වූ බවට සාධක හමු වේ. ඒ අනුව දඩයක්කරුවන්ට අධිපති දෙවියා ලෙස පූජනීයත්වයට පත්ව ඇත්තේ,",
+        options: [
+          "කම්මාර දෙවියා ය.",
+          "ව්‍යාධ දෙවියා ය.",
+          "පුරදේව දෙවියා ය.",
+          "උපුල්වන් දෙවියා ය.",
+          "සුමන දෙවියා ය."
+        ],
+        correct: 2,
+        explanation: "ප්‍රාග් බෞද්ධ ලංකාවේ දඩයක්කරුවන්ගේ අධිපති දෙවියා ලෙස 'ව්‍යාධ දෙවියා' වංශකථාවල සඳහන් වේ."
+      },
+      {
+        id: 37,
+        question: "ප්‍රාග් මහින්ද යුගයේදී ලක්දිව බෞද්ධයන් සිටින්නට ඇතැ'යි අනුමාන කළ හැකි සාක්ෂි වංශකථා සාහිත්‍යයෙන් සොයාගත හැකි ය. මහින්දාගමනයට ආසන්නතම යුගයේදී එවැනි පිරිසක් සිටි බවට දැක්විය හැකි සාධකයක් වන්නේ,",
+        options: [
+          "බුදුරජාණන් වහන්සේගේ ලංකාගමනයේදී විශාල පිරිසක් බෞද්ධයන් වී සිටීමයි.",
+          "භද්දකච්චානා කුමරියගේ සම්ප්‍රාප්තියයි.",
+          "මහාසුමන දෙවියන් ඇතුළු විශාල පිරිසක් බෞද්ධයන් වී සිටීමයි.",
+          "ගිරිහඬු සෑය බෞද්ධයන් විසින් නිමවා තිබීමයි.",
+          "මණිඅක්ඛික නාරජු ඇතුළු පිරිස බුදුසමය වැළඳ ගැනීමයි."
+        ],
+        correct: 4,
+        explanation: "තපස්සු භල්ලුක වෙළඳ දෙබෑයන් ලබාගත් කේශ ධාතු නිදන් කර තැනූ ගිරිහඬු සෑය ආශ්‍රිත බෞද්ධ පසුබිම මහින්දාගමනයට පෙර සිටි බෞද්ධයන් පිළිබඳ සාධකයකි."
+      },
+      {
+        id: 38,
+        question: "පහත දැක්වෙන ප්‍රකාශ හොඳින් කියවන්න.\nA - පඤ්චශීල ප්‍රතිපදාවට අනුගත ව රාජ්‍ය පාලනය කළ ආමණ්ඩගාමිණී රජතුමා මාඝාත ආඥාව පැනවූයේ ය.\nB - සතර සංග්‍රහ වස්තු අනුගමනය කරමින් සතර අගතියෙන් තොර ව රාජ්‍යය පාලනය කළ බුද්ධදාස රජතුමා සතුන්ට පවා වෙදකම් කොට සුවපත් කෙළේ ය.\nC - අවිහිංසා ප්‍රතිපදාව අනුගමනය කළ සිරිසඟබෝ රජතුමා මරණ දණ්ඩනයට නියම වූවන්ට පවා අභය දානය දුන්නේ ය.\nD - බෞද්ධ රාජ්‍ය පාලන මූලධර්ම අනුව රාජ්‍ය පාලනය කළ වළගම්බා රජතුමා ශාසන ශෝධනයක් සිදුකොට කතිකාවතක් පිහිටුවී ය.\nE - සතර සංග්‍රහ වස්තු අනුගමනය කළ සද්ධාතිස්ස රජතුමා අනුන්ගේ කුඹුරක කුලියට වැඩකොට උපයාගත් ධනයෙන් මහා සංඝයාට දන් පූජා කෙළේ ය.\nඉහත ප්‍රකාශ අතුරින් සාවද්‍ය ප්‍රකාශය තෝරන්න.",
+        options: ["A", "B", "C", "D", "E"],
+        correct: 4,
+        explanation: "වළගම්බා රජතුමා පාලන සමයේදී ත්‍රිපිටකය ග්‍රන්ථාරූඪ කිරීම හා අභයගිරි විහාර පූජාව සිදු වූ අතර D ප්‍රකාශය සාවද්‍ය වේ."
+      },
+      {
+        id: 39,
+        question: "මහසෙන් රජතුමා ලාංකික බුදුසමයේ සංවර්ධනය වෙනුවෙන් කටයුතු කළ බවට සාධකයක් ලෙස හඳුනාගත හැක්කේ,",
+        options: [
+          "ජේතවන විහාරය ඉදිකොට භික්ෂූන්ට පූජා කිරීමෙනි.",
+          "විනය සංගායනාවක් පවත්වා ශාසන චිරස්ථිතිය ඇති කිරීමෙනි.",
+          "ශාසන විරෝධී භික්ෂූන් හැට දෙනෙකු තෝරා වෙර ලකුණු තබා රටින් පිටුවහල් කිරීමෙනි.",
+          "ත්‍රිපිටකය ග්‍රන්ථාරූඪ කිරීමට අනුග්‍රහය දැක්වීමෙනි.",
+          "රටපුරා දන්සල් විවෘත කොට භික්ෂු සංඝයාට දන්දීමෙනි."
+        ],
+        correct: 1,
+        explanation: "මහසෙන් රජතුමා ජේතවන විහාරය ඉදිකර සංඝයාට පූජා කිරීම ප්‍රකට ශාසනික කටයුත්තකි."
+      },
+      {
+        id: 40,
+        question: "පහතින් දැක්වෙන්නේ මහාවිහාරය හා අභයගිරිය යන ආයතන දෙක සම්බන්ධ ප්‍රකාශ කිහිපයකි.\nA - පාලි අටුවාකරණය සඳහා බුද්ධඝෝෂ හිමියන්ට පහසුකම් සැලසීම\nB - විනය සංගායනාවක් පැවැත්වීම\nC - දළදා වහන්සේ පිළිගෙන පුද පූජා හා පෙරහැර පැවැත්වීම\nD - ලෝවා මහා ප්‍රාසාදය ශාසනික විනයකර්ම සඳහා භාවිත කිරීම\nE - රත්න ප්‍රාසාදය මහානාග තෙරුන්ට පූජා කිරීම\nඉහත ප්‍රකාශ අතුරින් අභයගිරි සම්ප්‍රදායට අයත් ප්‍රකාශ දෙක ඇතුළත් වරණය තෝරන්න.",
+        options: ["A සහ B", "A සහ C", "B සහ D", "C සහ D", "C සහ E"],
+        correct: 5,
+        explanation: "දළදා පූජා/පෙරහැර සම්ප්‍රදාය (C) සහ රත්න ප්‍රාසාදය සම්බන්ධ කටයුතු (E) අභයගිරි විහාර සම්ප්‍රදාය හා බැඳී පවතී."
+      },
+      {
+        id: 41,
+        question: "ක්‍රි.ව. 11 වන සියවසේ ථෙරවාද බුදුසමය බුරුම දේශයේ ස්ථාපනය වනවිට එහි රාජ්‍ය පාලනය කරන ලද්දේ ___________ විසිනි.",
+        options: [
+          "කෙයං සිත්ථ රජතුමා",
+          "අනුරුද්ධ රජතුමා",
+          "නරපතිසිථු රජතුමා",
+          "ධම්ම චේතිය රජතුමා",
+          "මින් දොන් මින් රජතුමා"
+        ],
+        correct: 2,
+        explanation: "11 වන සියවසේ බුරුමයේ (මියන්මාරයේ) ථෙරවාද බුදුසමය ස්ථාපනය කළේ අනුරුද්ධ (අනව්රත) රජතුමා ය."
+      },
+      {
+        id: 42,
+        question: "ප්‍රාග් බෞද්ධ චීන ජන ජීවිතය හැඩ ගැස් වූ ප්‍රධාන ආගමික සම්ප්‍රදාය දෙකක් පිළිබඳ තොරතුරු දැකගත හැකි ය. එම ආගමික සම්ප්‍රදාය දෙක වන්නේ,",
+        options: [
+          "ෂින්තෝ සහ තාඕ දහමයි.",
+          "කොන්ෆියුසියස් සහ ෂින්තෝ දහමයි.",
+          "තාඕ සහ සෙන් දහමයි.",
+          "ෂින්තෝ සහ සෙන් දහමයි.",
+          "තාඕ සහ කොන්ෆියුසියස් දහමයි."
+        ],
+        correct: 5,
+        explanation: "ප්‍රාග් බෞද්ධ චීනයේ සමාජ හා ආගමික ජීවිතය හැඩගැස්වූ ප්‍රධාන සම්ප්‍රදායන් දෙක තාඕවාදය සහ කොන්ෆියුසියස්වාදය වේ."
+      },
+      {
+        id: 43,
+        question: "පහත සඳහන් ප්‍රකාශ අතුරින් ජපන් බුදුසමයට අදාළ ව නොගැළපෙන ප්‍රකාශය තෝරන්න.",
+        options: [
+          "බොන් යනු මළවුන් පිදීමේ උත්සවයකි.",
+          "ජෝදෝ යනු බුදුරදුන්ගේ බුද්ධත්වය සිහිකරන උත්සවයකි.",
+          "හනමත්සුරි යනු බුදුරදුන්ගේ පරිනිර්වාණය සිහිකරන උත්සවයකි.",
+          "සුමිඑ යනු ජපන් සෙන් චිත‍්‍ර කලාවකි.",
+          "ඉකෙබන යනු සෙන් බුදුදහමේ ආභාසයෙන් ඇති වූ මල් කලාවකි."
+        ],
+        correct: 2,
+        explanation: "ජෝදෝ (Jodo / Pure Land) යනු ජපන් බුදුසමයේ නිකායකි; බුද්ධත්වය සිහිකරන උත්සවයක් නොවේ."
+      },
+      {
+        id: 44,
+        question: "ජපානයට බුදුසමය සම්ප්‍රාප්ත වූ විට එරට පරිපාලනයට සම්බන්ධ වී සිටි සොගා වංශිකයන් බුදුසමය මහත් හරසරින් පිළිගත් අතර, මොනොනොබෙ සහ නකතොමි වංශිකයෝ බුදුසමයට එරෙහි වූහ. ඔවුහු බුදුසමය ජපානයේ ස්ථාවර වීම වැළැක්වීම සඳහා නොයෙක් උපක්‍රම යෙදූහ. කාලය ගෙවී යත් ම පළමුවරට ජපානය තුළ බුදුසමය පිළිබඳ ධනාත්මක ආකල්පයක් වර්ධනය විය. ඊට හේතු වූ කරුණ වූයේ,",
+        options: [
+          "මොනො නොබෙ සහ නකතොමි වංශිකයන් ද බුදුසමය වැළඳ ගැනීමයි.",
+          "බුදුසමයට හිරිහැර කිරීම හේතුවෙන් සමාජය තුළ වසංගත පැතිර යාමයි.",
+          "බුදුසමය හේතුවෙන් මළවුන් කෙරෙහි වූ බිය පහව යාමයි.",
+          "'බුදුසමයට හිරිහැර කිරීමෙන් පැතිර ගිය වසංගතය උත්සන්න වී යැ'යි අදහසක් සමාජගත වීමයි.",
+          "‘බුදුසමයට ජපන් සංස්කෘතිය දියුණු කළ හැකි යැ'යි ජපන් සමාජයෙහි විශ්වාසයක් ගොඩනැගීමයි."
+        ],
+        correct: 4,
+        explanation: "බුදුපිළිම/සිද්ධස්ථානවලට හානි කිරීමෙන් පසු වසංගතය උත්සන්න වීම නිසා බුදුදහමේ බලය පිළිබඳ ධනාත්මක විශ්වාසයක් ඇති විය."
+      },
+      {
+        id: 45,
+        question: "බුද්ධ ප්‍රතිමාවක් නෙළීම පිණිස බුදුරදුන් ධරමාන කාලයේ ම අනේපිඬු සිටුතුමා විසින් අවසර ලබාගත් බව සඳහන් වන මූලාශ්‍රය වන්නේ,",
+        options: [
+          "සමන්තපාසාදිකාවයි.",
+          "කාලිංග බෝධි ජාතකයයි.",
+          "මනෝරථපූරණියයි.",
+          "චුල්ල වග්ග පාළියයි.",
+          "කෝසල බිම්බ වර්ණනාවයි."
+        ],
+        correct: 5,
+        explanation: "බුද්ධ ප්‍රතිමා නිර්මාණයේ ආරම්භය හා අවසර ගැනීම පිළිබඳ පුරාවෘත්ත 'කෝසල බිම්බ වර්ණනාව' හා සම්බන්ධ වේ."
+      },
+      {
+        id: 46,
+        question: "පොළොන්නරු ගල්විහාරයෙහි ඇති හිඳි පිළිමය පිළිබඳ අදහස් දක්වන ආචාර්ය ආනන්ද කුමාරස්වාමි එහි ආසනය ___________ යනුවෙන් හඳුන්වයි.",
+        options: [
+          "පද්මාසනය",
+          "වීරාසනය",
+          "භද්‍රාසනය",
+          "වජ්‍රාසනය",
+          "ස්වස්තික ආසනය"
+        ],
+        correct: 2,
+        explanation: "ආචාර්ය ආනන්ද කුමාරස්වාමි ගල්විහාර හිඳි පිළිමයේ ආසනය 'වීරාසනය' ලෙස හඳුන්වා ඇත."
+      },
+      {
+        id: 47,
+        question: "' බුදු, පසේබුදු, මහරහත් සහ සක්විතිරජු යන ථූපාරහ පුද්ගලයින් සඳහා ස්තූප නිර්මාණය කළ යුතු යැ'යි බුදුරදුන් අනුදැන වදාළ දේශනාව ඇතුළත් වන්නේ,",
+        options: [
+          "මහාපරිනිබ්බාණ සූත්‍රයේ ය.",
+          "මහාපදාන සූත‍්‍රයේ ය.",
+          "ලක්ඛණ සූත්‍රයේ ය.",
+          "පබ්බජ්ජා සූත‍්‍රයේ ය.",
+          "මහානිදාන සූත්‍රයේ ය."
+        ],
+        correct: 1,
+        explanation: "චාතුර්මහාභූතික / ථූපාරහ පුද්ගලයන් සඳහා ස්තූප තැනීම පිළිබඳ දේශනාව මහාපරිනිබ්බාණ සූත්‍රයේ සඳහන් වේ."
+      },
+      {
+        id: 48,
+        question: "සඳකඩ පහණ සහ එහි ඇති කැටයම් පිළිබඳ විවිධ විද්වතුන් මත පළ කර තිබේ. ඒ අනුව ‘සඳකඩපහණ ගොඩනැගිලි දොරටු සැරසීමට යොදාගත් උපායක් හා පාදෝනියක් ලෙස දැක්විය හැකි ය.' යන අදහස ඉදිරිපත් කරන ලද්දේ,",
+        options: [
+          "සෙනරත් පරණවිතාන විසිනි.",
+          "එච්. සී. පී. බෙල් විසිනි.",
+          "ඩී. ටී. දේවේන්ද්‍ර විසිනි.",
+          "විනී විතාරණ විසිනි.",
+          "විලියම් ඊ. වෝඩ් විසිනි."
+        ],
+        correct: 3,
+        explanation: "සඳකඩපහණ ගොඩනැගිලි දොරටු සැරසීමේ උපායක් හා පාදෝනියක් ලෙස ඩී. ටී. දේවේන්ද්‍ර විද්වතා අදහස් දක්වා ඇත."
+      },
+      {
+        id: 49,
+        question: "ආමිස හා ප්‍රතිපත්ති යන පූජාවන්ගෙන් පුදසත්කාර ලැබීමට බුදුරදුන් සුදුසු වන බව විස්තර කරමින් රචිත කෘතිය පූජාවලියයි. එම ග්‍රන්ථයේ කතුවරයා වන්නේ,",
+        options: [
+          "බුද්ධපුත්‍ර හිමියන් ය.",
+          "විද්‍යාචක්‍රවර්ති ය.",
+          "දෙවන පරාක්‍රමබාහු රජු ය.",
+          "ධර්මසේන හිමියන් ය.",
+          "ගුරුළුගෝමි පඬිතුමා ය."
+        ],
+        correct: 1,
+        explanation: "පූජාවලිය ග්‍රන්ථය රචනා කරන ලද්දේ මයුරපාද පරිවේණාධිපති බුද්ධපුත්‍ර හිමියන් විසිනි."
+      },
+      {
+        id: 50,
+        question: "බෞද්ධ සිතුවම් කලාවට අදාළ ව පහත දක්වා ඇති ප්‍රකාශ අවධානයෙන් කියවන්න.\nA - බුද්ධ, ධම්ම, සංඝ යන ත්‍රිවිධ රත්නය පිළිබඳ ශ්‍රද්ධාව හා භක්තිය ඇති කිරීම\nB - සමාජයට දහම් පණිවුඩයක් ලබාදීම\nC - සමාජයට උපදේශයක් ලබාදීම\nD - අකුරු නො දත් ගැමි ජනතාවට බණකතා කියා දී සිතුවම් මගින් ඒවා අවබෝධ කර ගැනීමට සැලැස්වීම\nE - ශාසනික හා ඓතිහාසික වශයෙන් වැදගත් පුවත් පිළිබඳ අවබෝධයක් ලබාදීම\nඉහත සඳහන් ප්‍රකාශ අතුරින් බෞද්ධ සිතුවම් කලාවෙන් අපේක්ෂිත අරමුණු වැඩි ම ගණනක් ඇතුළත් වරණය තෝරන්න.",
+        options: [
+          "A",
+          "A සහ B",
+          "A, B සහ C",
+          "A, B, C සහ D",
+          "A, B, C, D සහ E යන සියල්ල ම"
+        ],
+        correct: 5,
+        explanation: "ත්‍රිවිධ රත්න ශ්‍රද්ධාව, දහම් පණිවුඩය, සමාජ උපදේශය, ගැමි ජනතාවට ධර්මාවබෝධය සහ ඓතිහාසික/ශාසනික පුවත් දැක්වීම යන A සිට E දක්වා සියලු කරුණු බෞද්ධ සිතුවම් කලාවේ අරමුණු වේ."
+      }
+    ];
+
+    // Application State
+    const TOTAL_TIME_SECONDS = 120 * 60; // 2 hours = 7200s
+    let timeRemaining = TOTAL_TIME_SECONDS;
+    let timerInterval = null;
+    let mode = 'exam'; // 'exam' | 'practice'
+    let displayView = 'single'; // 'single' | 'all'
+    let currentIndex = 0; // 0..49
+    let answers = {}; // { questionId: optionNumber (1..5) }
+    let flagged = {}; // { questionId: boolean }
+    let isSubmitted = false;
+
+    // Sinhala numeral helper
+    const SINHALA_DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    // Start countdown timer
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (isSubmitted) {
+          clearInterval(timerInterval);
+          return;
+        }
+        if (timeRemaining > 0) {
+          timeRemaining--;
+          updateTimerUI();
+        } else {
+          clearInterval(timerInterval);
+          finalizeSubmission();
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const display = document.getElementById('timerDisplay');
+      const box = document.getElementById('timerBox');
+      display.textContent = formatTime(timeRemaining);
+
+      if (timeRemaining <= 600 && !isSubmitted) {
+        box.classList.remove('bg-indigoDeep', 'border-amber-300/40');
+        box.classList.add('bg-red-700', 'border-red-300', 'animate-pulse');
+      } else {
+        box.classList.remove('bg-red-700', 'border-red-300', 'animate-pulse');
+        box.classList.add('bg-indigoDeep', 'border-amber-300/40');
+      }
+    }
+
+    // Switch Exam vs Practice Mode
+    function setMode(newMode) {
+      mode = newMode;
+      const btnExam = document.getElementById('btnExamMode');
+      const btnPractice = document.getElementById('btnPracticeMode');
+
+      if (mode === 'exam') {
+        btnExam.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-gold text-maroonDark shadow cursor-pointer';
+        btnPractice.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-amber-100 hover:bg-white/10 cursor-pointer';
+      } else {
+        btnPractice.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-gold text-maroonDark shadow cursor-pointer';
+        btnExam.className = 'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-amber-100 hover:bg-white/10 cursor-pointer';
+      }
+      renderQuestions();
+    }
+
+    // Switch Single vs All questions view
+    function setDisplayView(view) {
+      displayView = view;
+      const btnSingle = document.getElementById('btnSingleView');
+      const btnAll = document.getElementById('btnAllView');
+      const singleFooter = document.getElementById('singleNavFooter');
+
+      if (view === 'single') {
+        btnSingle.className = 'px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-maroon text-white shadow-sm transition cursor-pointer';
+        btnAll.className = 'px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-parchment text-stone-700 hover:bg-amber-200/60 transition cursor-pointer';
+        singleFooter.classList.remove('hidden');
+      } else {
+        btnAll.className = 'px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-maroon text-white shadow-sm transition cursor-pointer';
+        btnSingle.className = 'px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-parchment text-stone-700 hover:bg-amber-200/60 transition cursor-pointer';
+        singleFooter.classList.add('hidden');
+      }
+      renderQuestions();
+    }
+
+    // Jump to question index (0..49)
+    function navigateQuestion(idx) {
+      if (idx < 0 || idx >= QUESTIONS.length) return;
+      currentIndex = idx;
+      if (displayView === 'single') {
+        renderQuestions();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById(`q-card-${QUESTIONS[idx].id}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+      renderPalette();
+    }
+
+    // Select an answer choice (1..5)
+    function selectOption(qId, optNum) {
+      if (isSubmitted) return;
+      answers[qId] = optNum;
+      updateStats();
+      renderPalette();
+      renderQuestions();
+    }
+
+    // Toggle flag/bookmark on a question
+    function toggleFlag(qId) {
+      flagged[qId] = !flagged[qId];
+      updateStats();
+      renderPalette();
+      renderQuestions();
+    }
+
+    // Escape HTML safely
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Build HTML for a single question card
+    function buildQuestionCard(q, index) {
+      const userAns = answers[q.id];
+      const isFlagged = !!flagged[q.id];
+      const showFeedback = isSubmitted || mode === 'practice';
+      const hasAnswered = userAns !== undefined;
+
+      let statusBadge = '';
+      if (isSubmitted && hasAnswered) {
+        statusBadge = userAns === q.correct
+          ? `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">✓ නිවැරදියි (+1)</span>`
+          : `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800 border border-red-300">✕ වැරදියි (0)</span>`;
+      } else if (isSubmitted && !hasAnswered) {
+        statusBadge = `<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-stone-200 text-stone-700">පිළිතුරු දී නැත</span>`;
+      }
+
+      const optionsHtml = q.options.map((optText, i) => {
+        const optNum = i + 1;
+        const isSelected = userAns === optNum;
+        const isCorrectOpt = q.correct === optNum;
+
+        let cardStyle = 'bg-ivory/70 hover:bg-parchment border-stone-300/90 text-stone-800';
+        let badgeStyle = 'bg-white border-stone-300 text-stone-700';
+
+        if (showFeedback && hasAnswered) {
+          if (isCorrectOpt) {
+            cardStyle = 'bg-emerald-50 border-emerald-600 text-emerald-950 font-medium ring-1 ring-emerald-500';
+            badgeStyle = 'bg-emerald-600 border-emerald-600 text-white';
+          } else if (isSelected && !isCorrectOpt) {
+            cardStyle = 'bg-red-50 border-red-500 text-red-950';
+            badgeStyle = 'bg-red-600 border-red-600 text-white';
+          }
+        } else if (isSelected) {
+          cardStyle = 'bg-goldLight border-maroon text-maroonDark font-semibold ring-1 ring-maroon/40';
+          badgeStyle = 'bg-maroon border-maroon text-white';
+        }
+
+        const disabledAttr = isSubmitted ? 'disabled' : '';
+        const cursorClass = isSubmitted ? 'cursor-default' : 'cursor-pointer';
+
+        return `
+          <button
+            type="button"
+            ${disabledAttr}
+            onclick="selectOption(${q.id}, ${optNum})"
+            class="w-full text-left flex items-start gap-3 p-3.5 rounded-xl border transition-all ${cardStyle} ${cursorClass}"
+          >
+            <span class="shrink-0 w-7 h-7 rounded-lg border flex items-center justify-center text-xs sm:text-sm font-bold mt-0.5 ${badgeStyle}">
+              ${optNum}
+            </span>
+            <span class="text-sm sm:text-[15px] leading-relaxed flex-1">${escapeHtml(optText)}</span>
+            ${
+              showFeedback && hasAnswered && isCorrectOpt
+                ? `<span class="shrink-0 text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">නිවැරදි</span>`
+                : ''
+            }
+          </button>
+        `;
+      }).join('');
+
+      let explanationHtml = '';
+      if (showFeedback && (hasAnswered || isSubmitted)) {
+        explanationHtml = `
+          <div class="mt-4 p-4 rounded-xl bg-amber-50/90 border border-gold/40 text-stone-800 space-y-1">
+            <div class="text-xs sm:text-sm font-bold text-maroonDark flex items-center gap-1.5">
+              <span>නිවැරදි පිළිතුර: (${q.correct})</span>
+              <span>•</span>
+              <span>කෙටි විග්‍රහය</span>
+            </div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed">${escapeHtml(q.explanation)}</p>
+          </div>
+        `;
+      }
+
+      return `
+        <article id="q-card-${q.id}" class="rounded-2xl bg-white border border-amber-900/15 shadow-sm p-4 sm:p-6 transition-all">
+          <div class="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-parchment">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <span class="px-3 py-1 rounded-lg bg-maroon text-white text-xs sm:text-sm font-bold">
+                ප්‍රශ්නය ${q.id}
+              </span>
+              ${statusBadge}
+            </div>
+            <button
+              type="button"
+              onclick="toggleFlag(${q.id})"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition cursor-pointer ${
+                isFlagged
+                  ? 'bg-amber-400 text-maroonDark border-amber-500 shadow-xs'
+                  : 'bg-ivory hover:bg-parchment text-stone-600 border-stone-300'
+              }"
+            >
+              <span>${isFlagged ? '★ සලකුණු කර ඇත' : '☆ පසුවට සලකුණු කරන්න'}</span>
+            </button>
+          </div>
+
+          <div class="text-sm sm:text-base font-medium text-[#1F1A17] whitespace-pre-line leading-relaxed mb-5">
+            ${escapeHtml(q.question)}
+          </div>
+
+          <div class="space-y-2.5">
+            ${optionsHtml}
+          </div>
+
+          ${explanationHtml}
+        </article>
+      `;
+    }
+
+    // Render questions based on view mode
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      if (displayView === 'single') {
+        const q = QUESTIONS[currentIndex];
+        container.innerHTML = buildQuestionCard(q, currentIndex);
+        document.getElementById('currentQuestionIndicator').textContent = `ප්‍රශ්නය ${q.id} / ${QUESTIONS.length}`;
+        document.getElementById('btnPrevQuestion').disabled = currentIndex === 0;
+        document.getElementById('btnNextQuestion').disabled = currentIndex === QUESTIONS.length - 1;
+      } else {
+        container.innerHTML = QUESTIONS.map((q, idx) => buildQuestionCard(q, idx)).join('');
+      }
+    }
+
+    // Render question navigator palette (1..50)
+    function renderPalette() {
+      const palette = document.getElementById('questionPalette');
+      palette.innerHTML = QUESTIONS.map((q, idx) => {
+        const isCurrent = displayView === 'single' && idx === currentIndex;
+        const isAns = answers[q.id] !== undefined;
+        const isFl = !!flagged[q.id];
+
+        let btnClass = 'bg-parchment text-stone-700 border-stone-300 hover:bg-amber-200/70';
+
+        if (isSubmitted) {
+          if (!isAns) {
+            btnClass = 'bg-stone-200 text-stone-600 border-stone-300';
+          } else if (answers[q.id] === q.correct) {
+            btnClass = 'bg-emerald-600 text-white border-emerald-700 font-bold';
+          } else {
+            btnClass = 'bg-red-600 text-white border-red-700 font-bold';
+          }
+        } else if (isFl) {
+          btnClass = 'bg-amber-400 text-maroonDark border-amber-600 font-bold';
+        } else if (isAns) {
+          btnClass = 'bg-emerald-600 text-white border-emerald-700 font-semibold';
+        }
+
+        const ringClass = isCurrent ? 'ring-2 ring-maroon ring-offset-1' : '';
+
+        return `
+          <button
+            type="button"
+            onclick="navigateQuestion(${idx})"
+            class="h-9 rounded-lg border text-xs transition flex items-center justify-center cursor-pointer ${btnClass} ${ringClass}"
+          >
+            ${q.id}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // Update progress & legend stats
+    function updateStats() {
+      const answeredCount = Object.keys(answers).length;
+      const flaggedCount = Object.values(flagged).filter(Boolean).length;
+      const unansweredCount = QUESTIONS.length - answeredCount;
+      const pct = Math.round((answeredCount / QUESTIONS.length) * 100);
+
+      document.getElementById('answeredCountText').textContent = answeredCount;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('legendAnswered').textContent = answeredCount;
+      document.getElementById('legendUnanswered').textContent = unansweredCount;
+      document.getElementById('legendFlagged').textContent = flaggedCount;
+    }
+
+    // Open custom modal before submitting
+    function openSubmitModal() {
+      if (isSubmitted) {
+        scrollToReview();
+        return;
+      }
+      const answeredCount = Object.keys(answers).length;
+      const unansweredCount = QUESTIONS.length - answeredCount;
+      document.getElementById('modalSummaryText').textContent =
+        `ඔබ පිළිතුරු සපයා ඇති ප්‍රශ්න සංඛ්‍යාව ${answeredCount} කි. පිළිතුරු සපයා නොමැති ප්‍රශ්න ${unansweredCount} ක් පවතී. දැන් ප්‍රශ්න පත්‍රය භාර දී ලකුණු ලබා ගැනීමට කැමති ද?`;
+
+      const modal = document.getElementById('submitModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeSubmitModal() {
+      const modal = document.getElementById('submitModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmSubmitQuiz() {
+      closeSubmitModal();
+      finalizeSubmission();
+    }
+
+    // Calculate score & show results + full review
+    function finalizeSubmission() {
+      isSubmitted = true;
+      clearInterval(timerInterval);
+
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      QUESTIONS.forEach((q) => {
+        if (answers[q.id] !== undefined) {
+          if (answers[q.id] === q.correct) {
+            correctCount++;
+          } else {
+            wrongCount++;
+          }
+        }
+      });
+
+      const total = QUESTIONS.length;
+      const percentage = ((correctCount / total) * 100).toFixed(1);
+
+      let gradeLabel = 'විශිෂ්ටයි (A)';
+      if (percentage >= 75) gradeLabel = 'විශිෂ්ටයි (A)';
+      else if (percentage >= 65) gradeLabel = 'ඉතා හොඳයි (B)';
+      else if (percentage >= 50) gradeLabel = 'සාමාන්‍ය සාධනීය (C)';
+      else if (percentage >= 35) gradeLabel = 'සමත් මට්ටම (S)';
+      else gradeLabel = 'තවදුරටත් පුහුණු වන්න';
+
+      document.getElementById('scoreTotal').textContent = `${correctCount} / ${total}`;
+      document.getElementById('scorePercent').textContent = `${percentage}%`;
+      document.getElementById('scoreBreakdown').textContent = `${correctCount} / ${wrongCount}`;
+      document.getElementById('scoreGrade').textContent = gradeLabel;
+      document.getElementById('resultSubtext').textContent =
+        `පිළිතුරු නොදුන් ප්‍රශ්න: ${total - (correctCount + wrongCount)} • සියලු ප්‍රශ්න 50 සඳහා පිළිතුරු හා විග්‍රහ පහතින් දැක්වේ.`;
+
+      document.getElementById('resultsCard').classList.remove('hidden');
+
+      // Switch to 'all' view so learner can easily review every question
+      setDisplayView('all');
+      renderPalette();
+      document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function scrollToReview() {
+      const el = document.getElementById('questionsContainer');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Restart quiz cleanly
+    function restartQuiz() {
+      answers = {};
+      flagged = {};
+      isSubmitted = false;
+      currentIndex = 0;
+      timeRemaining = TOTAL_TIME_SECONDS;
+
+      document.getElementById('resultsCard').classList.add('hidden');
+      updateTimerUI();
+      updateStats();
+      setDisplayView('single');
+      renderPalette();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Initialize app on load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateTimerUI();
+      updateStats();
+      renderQuestions();
+      renderPalette();
+      startTimer();
+    });
+  </script>
+</body>
+</html>
